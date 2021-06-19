@@ -1,1 +1,14 @@
-{"devDependencies":{"chai":"^4.3.4","mocha":"^9.0.1","nyc":"^15.1.0"}}
+{
+    "name": "frontend-employee-data",
+    "version": "1.0.0",
+    "main": "index.html",
+    "scripts": {
+        "test": "mocha"
+    },
+    "dependencies": {
+        "bootstrap": "^5.0.1",
+        "chai": "^4.3.4",
+        "mocha": "^9.0.1",
+        "nyc": "^15.1.0"
+    }
+}
