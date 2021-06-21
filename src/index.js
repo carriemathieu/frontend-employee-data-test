@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     // creates global variable to append table rows
-    let allEmployeesRecordsTable = document.getElementById("all-employees-records-table")
+    let allEmployeesRecordsTable = document.getElementById("employee_records")
     let employeeIdForm = document.getElementById("find-employee-form")
-    let findEmployeeRecordTable = document.getElementById("find-employee-record-table")
+    let findEmployeeRecordTable = document.getElementById("employee_record")
 
     fetchEmployeeRecords()
 
-    employeeIdForm.addEventListener('submit', (e) => {
+    employeeIdForm.addEventListener('submit', e => {
         e.preventDefault()
         onFormSubmit(e)
     })
@@ -17,8 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(resp => resp.json())
             .then(records => {
                 records.data.forEach(record => {
+                    let age = record.employee_age
+                    let salary = parseInt(record.employee_salary)
                     // if employee is between 22 & 28, add to table
-                    if (record.employee_age >= 22 && record.employee_age <= 28) {
+                    if (age >= 22 && age <= 28 && salary > 1000) {
                         createTableRow(record)
                     }
                 })
@@ -63,14 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(resp => resp.json())
             .then(emp => {
                 let record = emp.data
-                testIfVowel(record)
+                !record ? window.alert("Invalid employee.") : testIfVowel(record)
             })
             .catch(err => console.log(err))
     }
 
     function testIfVowel(record) {
-        // to provide as argument in createTableRow func to append row to find employee table
+        // to provide as argument in createTableRow func - append row to find employee table
         let table = findEmployeeRecordTable
-        return /[aeiou]/i.test(record.employee_name[0]) ? createTableRow(record,table) : window.alert("no vowel")
+        // checks if employee name begins with vowel. if so, creates row in find employee record table
+        return /[aeiou]/i.test(record.employee_name[0]) ? createTableRow(record,table) : window.alert("Employee's name does not begin with a vowel.")
     }
 })
