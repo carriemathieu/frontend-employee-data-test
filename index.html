@@ -14,7 +14,7 @@
         hi
     </header>
     <div id="main-container">
-        <table id="employee-records-table" class="table table-striped">
+        <table id="all-employees-records-table" class="table table-striped">
             <thead>
                 <tr>
                     <th>Employee Name</th>
@@ -31,19 +31,36 @@
         <div>
             <h3>Find an Employee</h3>
             <br>
-            <div class="row g-3 align-items-center">
-                <div class="col-auto">
-                    <label class="col-form-label">Employee ID:</label>
+            <form id="find-employee-form">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label class="col-form-label">Employee ID:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="number" id="employee-id-input" class="form-control" aria-describedby="employeeIDHelpInline">
+                    </div>
+                    <div class="col-auto">
+                        <span id="employeeIDHelpInline" class="form-text">
+                        Please enter the employee's ID number.
+                        </span>
+                    </div>
                 </div>
-                <div class="col-auto">
-                    <input type="number" class="form-control" aria-describedby="employeeIDHelpInline">
-                </div>
-                <div class="col-auto">
-                    <span id="employeeIDHelpInline" class="form-text">
-                    Please enter the employee's ID.
-                    </span>
-                </div>
-            </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <br>
+            <table id="find-employee-record-table" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Employee Age</th>
+                        <th>Employee Salary</th>
+                    </tr>
+                </thead>
+                <tbody id="employee_record">
+    
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
