@@ -15,11 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function fetchEmployeeRecords() {
         fetch("http://dummy.restapiexample.com/api/v1/employees")
             .then(resp => resp.json())
-            .then(records => {
-                records.data.forEach(record => {
+            .then(emp => {
+                const records = emp.data
+                // sorts salaries from highest - lowest
+                records.sort((a,b) => {
+                   return parseInt(b.employee_salary) - parseInt(a.employee_salary)
+                })
+                // creates table row if age between 22 & 28 & salary > 1000
+                records.forEach(record => {
                     let age = record.employee_age
                     let salary = parseInt(record.employee_salary)
-                    // if employee is between 22 & 28, add to table
                     if (age >= 22 && age <= 28 && salary > 1000) {
                         createTableRow(record)
                     }
@@ -47,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         row.appendChild(employeeName)
         row.appendChild(employeeAge)
         row.appendChild(employeeSalary)
+        // if (record.employee_salary > )
         table.appendChild(row)
     }
 
