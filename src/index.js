@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(resp => resp.json())
             .then(emp => {
                 let record = emp.data
+                // if record doesn't exist, alert user. otherwise, test if record is vowel
                 !record ? window.alert("Invalid employee.") : testIfVowel(record)
             })
             .catch(err => console.log(err))
