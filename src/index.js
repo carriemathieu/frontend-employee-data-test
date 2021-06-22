@@ -13,7 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // gets all employee data from API
     function fetchEmployeeRecords() {
-        fetch("http://dummy.restapiexample.com/api/v1/employees")
+        fetch("http://dummy.restapiexample.com/api/v1/employees", {
+            retryOn: function(attempt, error, response) {
+              // retry on any network error, or 4xx or 5xx status codes
+              if (error !== null || response.status >= 400) {
+                console.log(`retrying, attempt number ${attempt + 1}`);
+                return true;
+              }
+            }})
             .then(resp => resp.json())
             .then(emp => {
                 const records = emp.data
@@ -67,7 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function fetchEmployeeRecord(id) {
-        fetch(`http://dummy.restapiexample.com/api/v1/employee/${id}`)
+        fetch(`http://dummy.restapiexample.com/api/v1/employee/${id}`, {
+            retryOn: function(attempt, error, response) {
+              // retry on any network error, or 4xx or 5xx status codes
+              if (error !== null || response.status >= 400) {
+                console.log(`retrying, attempt number ${attempt + 1}`);
+                return true;
+              }
+            }})
             .then(resp => resp.json())
             .then(emp => {
                 let record = emp.data
