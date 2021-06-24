@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // sorts salaries from highest - lowest
             records.sort((a,b) => {
                 return parseInt(b.employee_salary) - parseInt(a.employee_salary);
-            })
+            });
             // creates table row if age between 22 & 28 & salary > 1000
             records.forEach(record => {
                 let age = record.employee_age;
