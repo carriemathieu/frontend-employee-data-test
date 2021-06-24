@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         row.appendChild(employeeSalary);
 
         table.appendChild(row);
-    }
+    };
 
     function onFormSubmit() {
         let employeeInput = document.getElementById("employee-id-input");
